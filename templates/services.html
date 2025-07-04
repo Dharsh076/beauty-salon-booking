@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Services We Offer</h2>
+
+<div class="row g-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='images/haircut.jpg') }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Haircut">
+            <div class="card-body">
+                <h5 class="card-title">Haircut</h5>
+                <p class="card-text">Trendy cuts tailored to your style.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='images/facial.jpg') }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Facial">
+            <div class="card-body">
+                <h5 class="card-title">Facials</h5>
+                <p class="card-text">Glow up with deep-cleansing treatments.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='images/nails.jpg') }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Manicure">
+            <div class="card-body">
+                <h5 class="card-title">Manicure & Pedicure</h5>
+                <p class="card-text">Nail care and design that impresses.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='images/makeup.jpg') }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Makeup">
+            <div class="card-body">
+                <h5 class="card-title">Makeup</h5>
+                <p class="card-text">Perfect looks for every occasion.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

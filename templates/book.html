@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment{% endblock %}
+{% block content %}
+{% if request.path.startswith("/admin/edit") %}
+<h2>Edit Booking</h2>
+{% else %}
+<h2>Book Your Appointment</h2>
+{% endif %}
+
+<form method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.service.label(class="form-label") }}
+        {{ form.service(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.datetime.label(class="form-label") }}
+        {{ form.datetime(class="form-control", id="datetimepicker") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.submit(class="btn btn-success") }}
+    </div>
+</form>
+
+<!-- Flatpickr JS & CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("#datetimepicker", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    minDate: "today",
+    defaultHour: 9,
+    minuteIncrement: 15,
+    onReady: adjustTimeRange,
+    onChange: adjustTimeRange
+  });
+
+  function adjustTimeRange(selectedDates, dateStr, instance) {
+    const day = selectedDates[0] ? selectedDates[0].getDay() : null;
+
+    if (day === 0) { // Sunday
+      instance.set('minTime', "10:00");
+      instance.set('maxTime', "18:00");
+    } else { // Monday to Saturday
+      instance.set('minTime', "09:00");
+      instance.set('maxTime', "21:00");
+    }
+  }
+</script>
+
+{% endblock %}
